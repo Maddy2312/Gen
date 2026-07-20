@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const { handleRegister } = useAuth();
+  const { handleLogin } = useAuth();
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    contact: "",
-    role: "buyer",
   });
 
   const [loading, setLoading] = useState(false);
@@ -28,21 +25,18 @@ const Register = () => {
 
     try {
       setLoading(true);
-      const data = await handleRegister(formData);
+      const data = await handleLogin(formData);
 
-      // 1. Clear form data after successful registration
+      // 1. Clear form data after successful login
       setFormData({
-        name: "",
         email: "",
         password: "",
-        contact: "",
-        role: "buyer",
       });
 
-      navigate("/");
+      navigate("/")
       
     } catch (error) {
-      alert(error.response?.data?.message || "Registration failed");
+      alert(error.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -54,17 +48,7 @@ const Register = () => {
         onSubmit={submitHandler}
         className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-4"
       >
-        <h2 className="text-3xl font-bold text-center">Register</h2>
-
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full border rounded p-3"
-          required
-        />
+        <h2 className="text-3xl font-bold text-center">Login</h2>
 
         <input
           type="email"
@@ -86,37 +70,17 @@ const Register = () => {
           required
         />
 
-        <input
-          type="text"
-          name="contact"
-          placeholder="Contact Number"
-          value={formData.contact}
-          onChange={handleChange}
-          className="w-full border rounded p-3"
-          required
-        />
-
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          className="w-full border rounded p-3"
-        >
-          <option value="buyer">Buyer</option>
-          <option value="seller">Seller</option>
-        </select>
-
         <button
           disabled={loading}
           className="w-full bg-blue-600 text-white rounded p-3"
         >
-          {loading ? "Registering..." : "Register"}
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <p className="text-center">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-600">
-            Login
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-600">
+            Register
           </Link>
         </p>
       </form>
@@ -124,4 +88,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
