@@ -13,3 +13,21 @@ export const createProductApi = async(product) => {
         throw error;
     }
 }
+
+export const sellerProductsApi = async() => {
+    try {
+        const response = await productApiInstance.get("/seller");
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const userProductsApi = async() => {
+    try {
+        const response = await productApiInstance.get("/user");
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

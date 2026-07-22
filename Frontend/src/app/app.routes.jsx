@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Register from "../features/auth/pages/Register.jsx";
 import Login from "../features/auth/pages/Login.jsx";
 import CreateProduct from "../features/products/pages/groups/seller/CreateProduct.jsx";
+import SellerDashboard from "../features/products/pages/groups/seller/SellerDashboard.jsx";
 export const routes = createBrowserRouter([
     {
         path: "/",
@@ -16,7 +17,11 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/create-product",
+    path: "/seller/create-product",
     element: <CreateProduct />,
+  },
+  {
+    path: "/seller/dashboard",
+    element: <SellerDashboard />,
   }
 ]);

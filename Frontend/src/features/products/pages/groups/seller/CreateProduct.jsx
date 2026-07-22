@@ -5,7 +5,7 @@ import { Package, Plus, Trash2, ArrowLeft, Loader2, Upload, Image as ImageIcon }
 
 const CreateProduct = () => {
   const navigate = useNavigate();
-  const { createProduct } = useProduct();
+  const { handleCreateProduct } = useProduct();
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -75,7 +75,7 @@ const CreateProduct = () => {
         }
       });
 
-      const res = await createProduct(data);
+      const res = await handleCreateProduct(data);
       if (res?.success) {
         navigate("/");
       } else {
