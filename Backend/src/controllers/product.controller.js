@@ -1,4 +1,5 @@
 import productModel from "../models/product.model.js";
+import { uploadFile } from "../services/storage.service.js";
 
 export const createProduct = async (req, res) => {
   try {

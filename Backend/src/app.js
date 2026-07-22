@@ -17,6 +17,6 @@ app.use(cors({
 }));
 
 app.use("/api/auth", authRouter);
-app.use("api/products", productRouter)
+app.use("/api/products", productRouter)
 
 export default app;
