@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import useProduct from "../../../hooks/useProduct";
 import { useSelector } from "react-redux";
 import { Package, Plus, Trash2, Loader2, ArrowUpRight, ShieldCheck } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const SellerDashboard = () => {
   const { handleSellerProducts, deleteProduct } = useProduct();
   const sellerProducts = useSelector((state) => state.product.sellerProducts);
   const [loadingId, setLoadingId] = React.useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleSellerProducts();
@@ -85,6 +86,7 @@ const SellerDashboard = () => {
                 const primaryImage = product.images?.[0]?.url || "";
                 return (
                   <div
+                  onClick={()=>navigate(`/seller/dashboard/${product._id}`)}
                     key={product._id}
                     className="bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-3xl p-6 flex flex-col justify-between gap-6 hover:border-black/20 dark:hover:border-white/20 transition-all"
                   >

@@ -31,3 +31,21 @@ export const userProductsApi = async() => {
         throw error;
     }
 }
+
+export const createVariantApi = async(variant, id) => {
+    try {
+        const response = await productApiInstance.post(`/${id}/variants`, variant);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export const getProductByIdApi = async(id) => {
+    try {
+        const response = await productApiInstance.get(`/getProduct/${id}`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

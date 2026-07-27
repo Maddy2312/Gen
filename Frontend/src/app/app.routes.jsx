@@ -3,6 +3,8 @@ import Register from "../features/auth/pages/Register.jsx";
 import Login from "../features/auth/pages/Login.jsx";
 import CreateProduct from "../features/products/pages/groups/seller/CreateProduct.jsx";
 import SellerDashboard from "../features/products/pages/groups/seller/SellerDashboard.jsx";
+import CreateProductVariant from "../features/products/pages/groups/seller/CreateProductVariant.jsx";
+import SellerProductById from "../features/products/pages/groups/seller/sellerProductById.jsx";
 export const routes = createBrowserRouter([
     {
         path: "/",
@@ -23,5 +25,13 @@ export const routes = createBrowserRouter([
   {
     path: "/seller/dashboard",
     element: <SellerDashboard />,
+  },
+  {
+    path: "/seller/dashboard/:id/create-variant",
+    element: <CreateProductVariant />,
+  },
+  {
+    path: "/seller/dashboard/:id",
+    element: <SellerProductById />,
   }
 ]);

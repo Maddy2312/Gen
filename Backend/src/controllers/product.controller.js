@@ -117,3 +117,24 @@ export const createVariant = async (req, res) => {
     throw error;
   }
 };
+
+export const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await productModel.findById(id);
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Product fetched successfully",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

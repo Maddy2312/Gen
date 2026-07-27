@@ -32,8 +32,6 @@ const variantSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-
-  images: [String],
 });
 
 export default variantSchema;
