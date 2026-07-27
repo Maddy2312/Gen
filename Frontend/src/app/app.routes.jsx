@@ -7,15 +7,9 @@ import CreateProductVariant from "../features/products/pages/groups/seller/Creat
 import SellerProductById from "../features/products/pages/groups/seller/sellerProductById.jsx";
 import Home from "../features/products/pages/groups/user/Home.jsx";
 import ProductById from "../features/products/pages/groups/seller/ProductById.jsx";
+import AppLayout from "./AppLayout.jsx";
+import Protected from "../features/products/pages/groups/Protected/Protected.jsx";
 export const routes = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-    },
-    {
-      path: "/product/:id",
-      element: <ProductById />
-    },
   {
     path: "/register",
     element: <Register />,
@@ -25,19 +19,37 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/seller/create-product",
-    element: <CreateProduct />,
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/product/:id",
+        element: <ProductById />,
+      },
+    ],
   },
   {
-    path: "/seller/dashboard",
-    element: <SellerDashboard />,
+    path: "/seller",
+    children: [
+      {
+        path: "/seller/create-product",
+        element: <Protected role="seller"><CreateProduct /></Protected>,
+      },
+      {
+        path: "/seller/dashboard",
+        element: <Protected role="seller"><SellerDashboard /></Protected>,
+      },
+      {
+        path: "/seller/dashboard/:id/create-variant",
+        element: <Protected role="seller"><CreateProductVariant /></Protected>,
+      },
+      {
+        path: "/seller/dashboard/:id",
+        element: <Protected role="seller"><SellerProductById /></Protected>,
+      },
+    ],
   },
-  {
-    path: "/seller/dashboard/:id/create-variant",
-    element: <CreateProductVariant />,
-  },
-  {
-    path: "/seller/dashboard/:id",
-    element: <SellerProductById />,
-  }
 ]);
