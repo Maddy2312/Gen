@@ -5,10 +5,16 @@ import CreateProduct from "../features/products/pages/groups/seller/CreateProduc
 import SellerDashboard from "../features/products/pages/groups/seller/SellerDashboard.jsx";
 import CreateProductVariant from "../features/products/pages/groups/seller/CreateProductVariant.jsx";
 import SellerProductById from "../features/products/pages/groups/seller/sellerProductById.jsx";
+import Home from "../features/products/pages/groups/user/Home.jsx";
+import ProductById from "../features/products/pages/groups/seller/ProductById.jsx";
 export const routes = createBrowserRouter([
     {
         path: "/",
-        element: <h1>Home</h1>
+        element: <Home />,
+    },
+    {
+      path: "/product/:id",
+      element: <ProductById />
     },
   {
     path: "/register",
