@@ -38,7 +38,7 @@ const SellerDashboard = () => {
           </div>
 
           <Link
-            to="/admin/create-product"
+            to="/seller/create-product"
             className="flex items-center justify-center gap-2 bg-black dark:bg-white text-white dark:text-black text-xs font-black uppercase tracking-wider px-6 py-4 rounded-2xl hover:opacity-80 transition shadow-lg shrink-0"
           >
             <Plus size={16} /> Add New Product

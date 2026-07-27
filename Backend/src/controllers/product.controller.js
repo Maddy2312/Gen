@@ -79,3 +79,41 @@ export const userProducts = async (req, res) => {
     throw error;
   }
 };
+
+export const createVariant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { ram, storage, color, priceAmount, priceCurrency, stock } = req.body;
+    const product = await productModel.findById({
+      _id: id,
+      seller: req.user.id,
+    });
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+    product.variants.push({
+      ram,
+      storage,
+      color,
+      price: {
+        amount: priceAmount,
+        currency: priceCurrency,
+      },
+      stock,
+    });
+
+    await product.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Variant created successfully",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};

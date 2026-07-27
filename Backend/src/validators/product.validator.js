@@ -18,3 +18,13 @@ export const productValidator = [
   body("description").trim().notEmpty().withMessage("Product description is required"),
   validate,
 ];
+
+export const createVariantValidator = [
+  body("ram").trim().notEmpty().withMessage("Variant ram is required"),
+  body("storage").trim().notEmpty().withMessage("Variant storage is required"),
+  body("color").trim().notEmpty().withMessage("Variant color is required"),
+  body("priceAmount").trim().notEmpty().withMessage("Variant price amount is required"),
+  body("priceCurrency").trim().notEmpty().withMessage("Variant price currency is required"),
+  body("stock").trim().notEmpty().withMessage("Variant stock is required"),
+  validate,
+];

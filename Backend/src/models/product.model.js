@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import variantSchema from "./variants.schema.js";
 
 const productSchema = new mongoose.Schema(
   {
@@ -36,6 +37,8 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    variants: [variantSchema],
 
     seller: {
       type: mongoose.Schema.Types.ObjectId,
