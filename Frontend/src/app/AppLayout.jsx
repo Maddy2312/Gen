@@ -137,9 +137,7 @@ const AppLayout = () => {
               </div>
               <span className="text-xl font-black tracking-tight text-gray-900 dark:text-white">
                 GEN
-                <span className="text-black dark:text-white opacity-40">
-                  
-                </span>
+                <span className="text-black dark:text-white opacity-40"></span>
               </span>
             </Link>
 
