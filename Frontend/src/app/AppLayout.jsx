@@ -136,9 +136,9 @@ const AppLayout = () => {
                 <Laptop size={18} className="text-white dark:text-black" />
               </div>
               <span className="text-xl font-black tracking-tight text-gray-900 dark:text-white">
-                Laptop
+                GEN
                 <span className="text-black dark:text-white opacity-40">
-                  Lux
+                  
                 </span>
               </span>
             </Link>
