@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import useProduct from "../../../hooks/useProduct";
 import { useSelector } from "react-redux";
 import { Package, ArrowUpRight, Layers } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Home = () => {
   const { handleUserProducts } = useProduct();
   const productState = useSelector((state) => state.product);
   const products = productState?.products || [];
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleUserProducts();
@@ -49,6 +50,7 @@ const Home = () => {
 
               return (
                 <div
+                onClick={()=>navigate(`/product/${product._id}`)}
                   key={product._id}
                   className="bg-black/[0.02] dark:bg-white/[0.02] border border-black/5 dark:border-white/5 rounded-3xl p-6 flex flex-col justify-between gap-6 hover:border-black/20 dark:hover:border-white/20 transition-all group"
                 >
@@ -92,7 +94,6 @@ const Home = () => {
                     </div>
 
                     <Link
-                      to={`/product/${product._id}`}
                       className="flex items-center gap-1 text-xs font-black uppercase tracking-wider bg-black dark:bg-white text-white dark:text-black px-4 py-2.5 rounded-xl hover:opacity-80 transition"
                     >
                       View <ArrowUpRight size={14} />
