@@ -18,6 +18,15 @@ export const addToCart = async (req, res) => {
       });
     }
 
+    const variant = product.variants.id(variantId);
+
+    if (!variant) {
+      return res.status(404).json({
+        success: false,
+        message: "Variant not found",
+      });
+    }
+
     const cart =
       (await cartModel.findOne({
         user: user._id,
@@ -61,19 +70,22 @@ export const addToCart = async (req, res) => {
         message: "cart updated successfully",
       });
     }
-      if (quantity > (await stockOfVariant(productId, variantId))) {
-        return res.status(400).json({
-          success: false,
-          message: "quantity exceeds stock",
-        });
-      }
-      
-      cart.items.push({
-        product: productId,
-        variant: variantId,
-        quantity,
-        price: product.variants.price
-          })
+    if (quantity > (await stockOfVariant(productId, variantId))) {
+      return res.status(400).json({
+        success: false,
+        message: "quantity exceeds stock",
+      });
+    }
+
+    cart.items.push({
+      product: productId,
+      variant: variantId,
+      quantity,
+      price: {
+        amount: variant.price.amount,
+        currency: variant.price.currency,
+      },
+    });
 
     await cart.save();
     return res.status(200).json({

@@ -1,11 +1,9 @@
 import axios from "axios";
 
-const cartApiInstance =
-  axios /
-  create({
-    baseURL: "http://localhost:3000/api/cart",
-    withCredentials: true,
-  });
+const cartApiInstance = axios.create({
+  baseURL: "http://localhost:3000/api/cart",
+  withCredentials: true,
+});
 
 export const addItemToCart = async (productId, variantId) => {
   try {

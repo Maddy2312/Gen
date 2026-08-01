@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../services/cart.api";
+import { addItemToCart } from "../services/cart.api.js";
 
 
 const useCart = () => {
