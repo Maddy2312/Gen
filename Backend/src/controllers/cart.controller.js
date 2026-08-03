@@ -101,7 +101,8 @@ export const addToCart = async (req, res) => {
 
 export const getCart = async (req, res) => {
   try {
-    const cart = await cartModel.findOne({ user: req.user._id });
+    const user = req.user;
+    let cart = await cartModel.findOne({user:user.id}).populate("items.product");
     if (!cart) {
       cart = await cartModel.create({ user: req.user._id });
     }
