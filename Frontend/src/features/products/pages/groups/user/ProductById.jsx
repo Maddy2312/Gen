@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, Link, Navigate } from "react-router";
 import useProduct from "../../../hooks/useProduct.js";
 import {
   Package,
@@ -10,11 +10,13 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import useCart from "../../../../cart/hooks/useCart.js";
+import { useNavigate } from "react-router";
 
 const ProductById = () => {
   const { id } = useParams();
   const { handleGetProductById } = useProduct();
   const { handleAddToCart } = useCart();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
@@ -234,9 +236,14 @@ const ProductById = () => {
                   type="button"
                   disabled={selectedVariant.stock <= 0}
                   className="w-full bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-wider text-sm py-4 rounded-2xl flex justify-center items-center gap-2 hover:opacity-85 transition shadow-lg disabled:opacity-50"
-                  onClick={() =>
-                    handleAddToCart(product._id, selectedVariant._id)
-                  }
+                  onClick={async () => {
+                    try {
+                      await handleAddToCart(product._id, selectedVariant._id);
+                      navigate("/cart");
+                    } catch (err) {
+                      console.error("Failed to add product to cart", err);
+                    }
+                  }}
                 >
                   <ShoppingBag size={16} /> Add to Cart
                 </button>
