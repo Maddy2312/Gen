@@ -97,3 +97,21 @@ export const addToCart = async (req, res) => {
     throw error;
   }
 };
+
+
+export const getCart = async (req, res) => {
+  try {
+    const cart = await cartModel.findOne({ user: req.user._id });
+    if (!cart) {
+      cart = await cartModel.create({ user: req.user._id });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Cart fetched successfully",
+      cart,
+    });
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
